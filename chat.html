@@ -21,17 +21,39 @@
 
 <body>
   <script>
-    (function (d) {
-      window.omniChatQueueId = 224;
-      window.omniChatDomain =
-        'ambientesdetesteunicocontato.atenderbem.com';
+  (function (d) {
+    window.omniChatQueueId = 224;
+    window.omniChatDomain =
+      'ambientesdetesteunicocontato.atenderbem.com';
 
-      var s = d.createElement('script');
-      s.async = true;
-      s.src = 'https://wc.a-tend.online/omnichat.min.js';
+    var s = d.createElement('script');
+    s.async = true;
+    s.src = 'https://wc.a-tend.online/omnichat.min.js';
 
-      (d.head || d.body).appendChild(s);
-    })(document);
-  </script>
+    (d.head || d.body).appendChild(s);
+  })(document);
+</script>
+
+<script>
+  (function abrirWebChatAutomaticamente() {
+    const seletores = [
+      'button[aria-label*="chat" i]',
+      'button[title*="chat" i]',
+      '[role="button"][aria-label*="chat" i]',
+      '[aria-label*="atendimento" i]',
+      '[title*="atendimento" i]'
+    ];
+
+    const botao = seletores
+      .map((seletor) => document.querySelector(seletor))
+      .find(Boolean);
+
+    if (botao) {
+      botao.click();
+    } else {
+      setTimeout(abrirWebChatAutomaticamente, 500);
+    }
+  })();
+</script>
 </body>
 </html>
